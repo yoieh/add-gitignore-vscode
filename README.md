@@ -13,7 +13,7 @@ Choose from a comprehensive list of templates sourced from [github/gitignore](ht
 
 ### 🖼️ Visual Commands
 Intuitive command palette options with visual aids:
-- **Add .gitignore**: Kick start the process.
+**Add .gitignore**: Kick start the process.
   ![Add .gitignore command](images/add_command.png)
 
 ### 🌌 Multi-Workspace Support
@@ -33,7 +33,6 @@ If your project already has a `.gitignore`, you can opt to extend it with additi
 ![Extend existing .gitignore](images/existing.png)
 ![Extended .gitignore](images/extended.png)
 
-... [continue with other features if any]
 
 ## Release Notes
 
