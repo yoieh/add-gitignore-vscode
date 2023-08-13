@@ -1,12 +1,19 @@
 import * as vscode from "vscode";
 
-export default async function extendFile(uri: vscode.Uri, content: string) {
+export default async function extendFile(
+  uri: vscode.Uri,
+  content: string,
+  readFileFunc: typeof vscode.workspace.fs.readFile = vscode.workspace.fs
+    .readFile,
+  writeFileFunc: typeof vscode.workspace.fs.writeFile = vscode.workspace.fs
+    .writeFile
+) {
   // append to .gitignore file
-  const existingGitignore = await vscode.workspace.fs.readFile(
+  const existingGitignore = await readFileFunc(
     vscode.Uri.joinPath(uri, ".gitignore")
   );
 
-  vscode.workspace.fs.writeFile(
+  writeFileFunc(
     vscode.Uri.joinPath(uri, ".gitignore"),
     Buffer.from(`${existingGitignore}\n${content}`)
   );
