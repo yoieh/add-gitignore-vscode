@@ -36,7 +36,7 @@ export default function addCommand(
       }
 
       // if selectedWorkspaceFolder has a .gitignore file we need to ask the user if they want to overwrite it
-      const overwrite = await checkCreateOrExtend();
+      const overwrite = await checkCreateOrExtend(selectedWorkspaceFolder);
 
       // if overwrite is true, overwrite the .gitignore file
       if (overwrite) {
