@@ -1,12 +1,16 @@
 import * as vscode from "vscode";
 
-export default async function createOrExtend(): Promise<boolean> {
+export default async function checkCreateOrExtend(
+  findFilesFunc: typeof vscode.workspace.findFiles = vscode.workspace.findFiles,
+  showQuickPickFunc: typeof vscode.window.showQuickPick = vscode.window
+    .showQuickPick
+): Promise<boolean> {
   try {
     // check if .gitignore exists
-    const fileExists = await vscode.workspace.findFiles(".gitignore");
+    const fileExists = await findFilesFunc(".gitignore");
 
     if (fileExists.length > 0) {
-      const overwriteAnswer = await vscode.window.showQuickPick(["Yes", "No"], {
+      const overwriteAnswer = await showQuickPickFunc(["Yes", "No"], {
         placeHolder: "Do you want to overwrite your existing .gitignore?",
       });
 

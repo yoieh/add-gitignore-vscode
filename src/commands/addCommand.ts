@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import getGitignoreTypes from "../utils/getGitignoreTypes";
 import selectWorkspace from "../utils/selectWorkspace";
-import createOrExtend from "../utils/createOrExtend";
+import checkCreateOrExtend from "../utils/checkCreateOrExtend";
 import getGitignoreContent from "../utils/getGitignore";
 import createFile from "../utils/createFile";
 import extendFile from "../utils/extendFile";
@@ -36,7 +36,7 @@ export default function addCommand(
       }
 
       // if selectedWorkspaceFolder has a .gitignore file we need to ask the user if they want to overwrite it
-      const overwrite = await createOrExtend();
+      const overwrite = await checkCreateOrExtend();
 
       // if overwrite is true, overwrite the .gitignore file
       if (overwrite) {
