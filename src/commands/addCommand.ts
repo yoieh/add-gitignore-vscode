@@ -3,8 +3,10 @@ import getGitignoreTypes from "../utils/getGitignoreTypes";
 import selectWorkspace from "../utils/selectWorkspace";
 import createOrExtend from "../utils/createOrExtend";
 import getGitignoreContent from "../utils/getGitignore";
+import createFile from "../utils/createFile";
+import extendFile from "../utils/extendFile";
 
-function addCommand(
+export default function addCommand(
   cachedProjectTypes: string[]
 ): (...args: unknown[]) => void {
   return async () => {
@@ -44,26 +46,4 @@ function addCommand(
       }
     }
   };
-}
-
-export default addCommand;
-
-async function createFile(uri: vscode.Uri, content: string) {
-  // create .gitignore file
-  vscode.workspace.fs.writeFile(
-    vscode.Uri.joinPath(uri, ".gitignore"),
-    Buffer.from(content)
-  );
-}
-
-async function extendFile(uri: vscode.Uri, content: string) {
-  // append to .gitignore file
-  const existingGitignore = await vscode.workspace.fs.readFile(
-    vscode.Uri.joinPath(uri, ".gitignore")
-  );
-
-  vscode.workspace.fs.writeFile(
-    vscode.Uri.joinPath(uri, ".gitignore"),
-    Buffer.from(`${existingGitignore}\n${content}`)
-  );
 }

@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 
-export async function selectWorkspace(): Promise<
+export default async function selectWorkspace(): Promise<
   vscode.WorkspaceFolder | undefined
 > {
   if (!vscode.workspace.workspaceFolders) {
@@ -30,5 +30,3 @@ export async function selectWorkspace(): Promise<
 
   return vscode.workspace.workspaceFolders[0];
 }
-
-export default selectWorkspace;

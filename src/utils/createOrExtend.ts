@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 
-export async function createOrExtend(): Promise<boolean> {
+export default async function createOrExtend(): Promise<boolean> {
   try {
     // check if .gitignore exists
     const fileExists = await vscode.workspace.findFiles(".gitignore");
@@ -27,5 +27,3 @@ export async function createOrExtend(): Promise<boolean> {
 
   return false;
 }
-
-export default createOrExtend;
