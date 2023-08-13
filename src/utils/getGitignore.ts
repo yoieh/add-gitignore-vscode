@@ -1,11 +1,11 @@
 import * as vscode from "vscode";
 import * as https from "https";
 
-async function fetchedGitignoreContent(selectedType: string): Promise<string> {
+async function fetchedGitignoreContent(
+  selectedType: string,
+  httpsModule: typeof https = https
+): Promise<string> {
   return new Promise((resolve, reject) => {
-    // fetch gitignore content from github
-    const gitignoreUrl = `https://raw.githubusercontent.com/github/gitignore/master/${selectedType}.gitignore`;
-
     const options = {
       hostname: "raw.githubusercontent.com",
       path: `/github/gitignore/master/${selectedType}.gitignore`,
@@ -15,7 +15,7 @@ async function fetchedGitignoreContent(selectedType: string): Promise<string> {
       },
     };
 
-    return https
+    return httpsModule
       .get(options, (res) => {
         let data = "";
         res.on("data", (chunk) => {
@@ -31,9 +31,12 @@ async function fetchedGitignoreContent(selectedType: string): Promise<string> {
   });
 }
 
-async function tryGetGitignoreContent(selectedType: string) {
+async function tryGetGitignoreContent(
+  selectedType: string,
+  httpsModule: typeof https = https
+) {
   try {
-    return await fetchedGitignoreContent(selectedType);
+    return await fetchedGitignoreContent(selectedType, httpsModule);
   } catch (error) {
     if (error instanceof Error) {
       vscode.window.showErrorMessage(
@@ -46,6 +49,9 @@ async function tryGetGitignoreContent(selectedType: string) {
   }
 }
 
-export default async function getGitignoreContent(selectedType: string) {
-  return await tryGetGitignoreContent(selectedType);
+export default async function getGitignore(
+  selectedType: string,
+  httpsModule: typeof https = https
+) {
+  return await tryGetGitignoreContent(selectedType, httpsModule);
 }

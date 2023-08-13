@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import getGitignoreTypes from "../utils/getGitignoreTypes";
 import selectWorkspace from "../utils/selectWorkspace";
 import checkCreateOrExtend from "../utils/checkCreateOrExtend";
-import getGitignoreContent from "../utils/getGitignore";
+import getGitignore from "../utils/getGitignore";
 import createFile from "../utils/createFile";
 import extendFile from "../utils/extendFile";
 
@@ -25,7 +25,7 @@ export default function addCommand(
     if (selectedType) {
       vscode.window.showInformationMessage(`You selected ${selectedType}`);
 
-      const gitignoreContent = await getGitignoreContent(selectedType);
+      const gitignoreContent = await getGitignore(selectedType);
 
       if (!gitignoreContent) {
         vscode.window.showErrorMessage(
