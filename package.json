@@ -1,7 +1,7 @@
 {
   "name": "add-gitignore",
   "displayName": "Add gitignore",
-  "description": "Adds matched .gitignore to curent project",
+  "description": "Adds matched .gitignore to current project",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.81.0"
@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "add-gitignore.helloWorld",
-        "title": "Hello World"
+        "command": "add-gitignore.add",
+        "title": "Add .gitignore"
       }
     ]
   },
