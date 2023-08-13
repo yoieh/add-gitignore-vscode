@@ -1,7 +1,9 @@
 import * as vscode from "vscode";
 import * as https from "https";
 
-async function fetchGitignoreTypes(): Promise<string[]> {
+async function fetchGitignoreTypes(
+  httpsModule: typeof https = https
+): Promise<string[]> {
   return new Promise((resolve, reject) => {
     const options = {
       hostname: "api.github.com",
@@ -12,7 +14,7 @@ async function fetchGitignoreTypes(): Promise<string[]> {
       },
     };
 
-    https
+    httpsModule
       .get(options, (res) => {
         let data = "";
         res.on("data", (chunk) => {
@@ -33,14 +35,16 @@ async function fetchGitignoreTypes(): Promise<string[]> {
 }
 
 async function tryGetGitignoreTypes(
-  cachedProjectTypes: string[]
+  cachedProjectTypes: string[],
+  httpsModule: typeof https = https,
+  window: typeof vscode.window = vscode.window
 ): Promise<string[]> {
   if (cachedProjectTypes.length === 0) {
     try {
-      cachedProjectTypes = await fetchGitignoreTypes();
+      cachedProjectTypes = await fetchGitignoreTypes(httpsModule);
     } catch (error) {
       if (error instanceof Error) {
-        vscode.window.showErrorMessage(
+        window.showErrorMessage(
           "Failed to fetch gitignore types.",
           error.message
         );
@@ -54,7 +58,9 @@ async function tryGetGitignoreTypes(
 }
 
 export default async function getGitignoreTypes(
-  cachedProjectTypes: string[]
+  cachedProjectTypes: string[],
+  httpsModule: typeof https = https,
+  window: typeof vscode.window = vscode.window
 ): Promise<string[]> {
-  return await tryGetGitignoreTypes(cachedProjectTypes);
+  return await tryGetGitignoreTypes(cachedProjectTypes, httpsModule, window);
 }
