@@ -1,5 +1,5 @@
 {
-  "name": "add-gitignore",
+  "name": "add-gitignore-vscode",
   "displayName": "Add gitignore",
   "description": "Adds matched .gitignore to current project",
   "version": "0.0.1",
@@ -14,7 +14,7 @@
   "contributes": {
     "commands": [
       {
-        "command": "add-gitignore.add",
+        "command": "add-gitignore-vscode.add",
         "title": "Add .gitignore"
       }
     ]
