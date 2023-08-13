@@ -1,7 +1,7 @@
 {
   "name": "add-gitignore-vscode",
   "displayName": "Add gitignore",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A VS Code extension that simplifies the integration of .gitignore files. Choose from a vast collection of templates directly from github/gitignore, and seamlessly integrate or extend them in your projects.",
   "categories": [
     "Other",
