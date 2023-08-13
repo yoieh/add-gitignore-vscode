@@ -6,6 +6,7 @@
   "engines": {
     "vscode": "^1.81.0"
   },
+  "publisher": "Yoieh",
   "repository": {
     "type": "git",
     "url": "https://github.com/yoieh/add-gitignore-vscode"
