@@ -1,24 +1,23 @@
 import * as vscode from "vscode";
 
-export default async function selectWorkspace(): Promise<
-  vscode.WorkspaceFolder | undefined
-> {
-  if (!vscode.workspace.workspaceFolders) {
-    vscode.window.showErrorMessage(
-      "No workspace detected. Please open a project."
-    );
+export default async function selectWorkspace(
+  workspace: typeof vscode.workspace = vscode.workspace,
+  window: typeof vscode.window = vscode.window
+): Promise<vscode.WorkspaceFolder | undefined> {
+  if (!workspace.workspaceFolders) {
+    window.showErrorMessage("No workspace detected. Please open a project.");
 
     return;
   }
 
-  if (vscode.workspace.workspaceFolders.length > 1) {
+  if (workspace.workspaceFolders.length > 1) {
     try {
-      return await vscode.window.showWorkspaceFolderPick({
+      return await window.showWorkspaceFolderPick({
         placeHolder: "Select your workspace folder",
       });
     } catch (error) {
       if (error instanceof Error) {
-        vscode.window.showErrorMessage(
+        window.showErrorMessage(
           "Failed to fetch gitignore types.",
           error.message
         );
@@ -28,5 +27,5 @@ export default async function selectWorkspace(): Promise<
     }
   }
 
-  return vscode.workspace.workspaceFolders[0];
+  return workspace.workspaceFolders[0];
 }
