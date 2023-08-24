@@ -32,16 +32,3 @@ The selected `.gitignore` will be gracefully added to the root of your chosen or
 If your project already has a `.gitignore`, you can opt to extend it with additional configurations.
 ![Extend existing .gitignore](images/existing.png)
 ![Extended .gitignore](images/extended.png)
-
-
-## Release Notes
-
-### Version 0.0.1
-
-🎉 Initial release of `add-gitignore`!
-
-- **Simple Integration**: Quickly add `.gitignore` to any project.
-- **Extensibility**: Extend an existing `.gitignore` effortlessly.
-- **Multi-Workspace Awareness**: Smooth operation across multiple workspaces.
-- **Override Capability**: Full control to override or replace current `.gitignore` files.
-
